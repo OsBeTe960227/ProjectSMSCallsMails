@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal|center_vertical"
+    tools:context="com.example.projectcallsms.MainActivity">
+
+    <EditText
+        android:id="@+id/edit_SMS"
+        android:hint="Ingresa el mensaje de texto"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLength="2000"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:maxLines="12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_EnviarSMS"
+        android:layout_gravity="center_horizontal"
+        android:text="Enviar a..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_VolverSMS"
+        android:layout_gravity="center_horizontal"
+        android:text="Volver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
