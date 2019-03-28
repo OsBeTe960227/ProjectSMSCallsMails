@@ -148,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
                             textAsunto = etAsunto.getText().toString();
                             mensajeMail = etMail.getText().toString();
                             startActivityForResult(pickContact, 3);
+                            etAsunto=null;
+                            etMail=null;
                         }
                     });
                 }
@@ -275,5 +277,28 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+
+    private class brSMS extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle bundle = intent.getExtras();
+            if(bundle != null) {
+                Object[] pdus = (Object[]) bundle.get("pdus");
+                String format = bundle.getString("format");
+
+                final SmsMessage[] messages = new SmsMessage[pdus.length];
+                for(int i = 0; i < pdus.length; i++) {
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i], format);
+                    }else {
+                        messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                    }
+                    String senderPhoneNo = messages[i].getDisplayOriginatingAddress();
+                    Toast.makeText(context, "Mensaje " + messages[0].getMessageBody() + ", de " + senderPhoneNo, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 }
